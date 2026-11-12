@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#101d35">
+<meta name="description" content="SAT MASTER — preparação pessoal para o SAT Digital.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>SAT MASTER</title>
+<style>
+:root{--navy:#101d35;--blue:#3478d4;--green:#24865b;--bg:#f4f6fa;--card:#fff;--text:#172338;--muted:#68758a;--line:#e1e6ef;--red:#b84b4b;--amber:#a66a13}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif}button,select,input{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 15px;background:var(--blue);color:white;font-weight:650}button.secondary{background:#eaf0f8;color:#24456f}button.ghost{background:transparent;color:var(--blue);border:1px solid var(--line)}header{background:var(--navy);color:white;padding:22px max(18px,calc((100% - 1050px)/2)) 18px}header .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.4px}header img{width:42px;height:42px}header h1{font-size:27px;margin:18px 0 4px}header p{margin:0;color:#c5d3e6}.wrap{max-width:1050px;margin:auto;padding:16px}.nav{display:flex;gap:8px;overflow:auto;padding:12px 0}.nav button{white-space:nowrap;background:#e8edf5;color:#31415b}.nav button.active{background:var(--navy);color:white}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:16px;margin-bottom:12px;box-shadow:0 2px 9px #1b31500a}.card h2,.card h3{margin:0 0 10px}.muted{color:var(--muted)}.big{font-size:28px;font-weight:800}.progress{height:9px;background:#e9edf3;border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;background:var(--green)}.pill{font-size:12px;padding:5px 9px;border-radius:30px;background:#eef2f7;color:#536178}.topic{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);padding:12px 0}.topic button{padding:8px 10px;font-size:12px;min-width:125px}.status-Dominado{background:#e4f4eb;color:#176b43}.status-Em-aprendizado{background:#fff2dc;color:#8c5b0b}.status-Não-dominado{background:#fbeaea;color:#9c3e3e}.area-buttons{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.area-buttons button{background:#edf2f9;color:#29466f}.area-buttons button.active{background:var(--blue);color:white}select{padding:10px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--text);max-width:100%}.question{font-size:17px;line-height:1.5;margin:15px 0}.option{display:block;width:100%;text-align:left;background:white;color:var(--text);border:1px solid var(--line);margin:8px 0;font-weight:500}.option:disabled{opacity:1}.option.correct{border-color:var(--green);background:#e9f6ef}.option.wrong{border-color:var(--red);background:#fff0f0}.feedback{padding:12px;border-radius:10px;background:#f0f4fa;margin-top:12px}.hide{display:none}.footer{font-size:12px;color:var(--muted);padding:20px 4px;text-align:center}label{display:block;margin:8px 0}.statline{display:flex;justify-content:space-between;gap:10px;margin:7px 0}@media(min-width:700px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.wrap{padding:22px}.card{padding:19px}}@media(max-width:430px){header h1{font-size:23px}.topic{align-items:flex-start;flex-direction:column}.topic button{width:100%}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body>
+<header><div class="brand"><img src="icon.svg" alt=""> SAT MASTER <span class="pill">PERSONAL</span></div><h1>Prepare. Practice. Master.</h1><p>Seu centro pessoal de preparação para o SAT Digital.</p></header>
+<main class="wrap">
+<nav class="nav" aria-label="Navegação">
+<button class="active" data-page="home">Início</button><button data-page="matrix">Matriz</button><button data-page="practice">Treinar</button><button data-page="sim">Simulados</button><button data-page="progress">Desempenho</button>
+</nav>
+<section id="home">
+<div class="grid">
+<div class="card"><div class="muted">META SAT</div><div class="big" id="goalDisplay">1400</div><label>Definir meta <select id="goal"><option>1000</option><option>1100</option><option>1200</option><option>1300</option><option selected>1400</option><option>1450</option><option>1500</option><option>1550</option><option>1600</option></select></label></div>
+<div class="card"><div class="muted">QUESTÕES RESPONDIDAS</div><div class="big" id="answered">0</div></div>
+<div class="card"><div class="muted">TÓPICOS DOMINADOS</div><div class="big" id="mastered">0</div></div>
+<div class="card"><div class="muted">DOMÍNIO REGISTRADO</div><div class="big" id="percent">0%</div></div>
+</div>
+<div class="card"><h2>Seu progresso</h2><div class="progress"><span id="progressBar" style="width:0%"></span></div><p class="muted" id="progressText">0 de 39 tópicos dominados.</p></div>
+<div class="grid">
+<div class="card"><h2>📐 Math</h2><p class="muted">Álgebra, matemática avançada, análise de dados, geometria e trigonometria.</p><button onclick="go('matrix','Math')">Abrir Math</button></div>
+<div class="card"><h2>📖 Reading & Writing</h2><p class="muted">Interpretação, estrutura textual, expressão de ideias e gramática.</p><button onclick="go('matrix','Reading and Writing')">Abrir Reading & Writing</button></div>
+</div>
+<div class="card"><h2>Começar agora</h2><p class="muted">Faça um treino curto em inglês e receba explicações em português.</p><button onclick="go('practice')">Iniciar treino</button></div>
+</section>
+<section id="matrix" class="hide">
+<div class="card"><h2>Matriz do conhecimento</h2><p class="muted">Marque cada tópico como não dominado, em aprendizado ou dominado. Suas marcações ficam salvas neste aparelho.</p>
+<div class="area-buttons"><button class="active" id="mathTab" onclick="setArea('Math')">Math</button><button id="rwTab" onclick="setArea('Reading and Writing')">Reading & Writing</button></div>
+<label>Domínio <select id="domainFilter"><option value="Todos">Todos</option></select></label>
+<label>Status <select id="statusFilter"><option value="Todos">Todos</option><option>Não dominado</option><option>Em aprendizado</option><option>Dominado</option></select></label>
+<div id="topics"></div></div>
+</section>
+<section id="practice" class="hide">
+<div class="card"><h2>Banco de questões</h2><p class="muted">Questões de prática originais no estilo SAT. As questões oficiais devem ser obtidas nos materiais públicos do College Board.</p>
+<label>Área <select id="practiceArea"><option>Math</option><option>Reading and Writing</option></select></label>
+<label>Domínio <select id="practiceDomain"></select></label>
+<label>Quantidade <select id="count"><option>5</option><option selected>10</option><option>20</option></select></label>
+<button onclick="startPractice()">Gerar treino</button>
+<div id="quiz" class="hide"></div></div>
+</section>
+<section id="sim" class="hide">
+<div class="card"><h2>Simulados</h2><p class="muted">O SAT Digital tem duas seções adaptativas. Este protótipo oferece treinos e simulados de prática, mas ainda não calcula uma nota oficial nem replica a adaptação do Bluebook.</p>
+<div class="grid"><div><h3>Math</h3><p class="muted">44 questões · 70 minutos</p><button onclick="startPractice('Math',20)">Simular Math</button></div><div><h3>Reading & Writing</h3><p class="muted">54 questões · 64 minutos</p><button onclick="startPractice('Reading and Writing',20)">Simular R&W</button></div></div><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><h3>Simulado combinado</h3><p class="muted">Comece com 20 questões variadas. O formato integral de 98 questões será uma evolução futura.</p><button onclick="startPractice('Ambas',20)">Iniciar simulado combinado</button></div>
+</section>
+<section id="progress" class="hide">
+<div class="card"><h2>Desempenho</h2><div class="statline"><span>Questões respondidas</span><b id="pAnswered">0</b></div><div class="statline"><span>Acertos</span><b id="pCorrect">0</b></div><div class="statline"><span>Taxa de acerto</span><b id="accuracy">—</b></div><div class="statline"><span>Tópicos dominados</span><b id="pMastered">0</b></div><p class="muted">O histórico é armazenado localmente no navegador deste aparelho.</p><button class="ghost" onclick="resetStats()">Zerar estatísticas de questões</button></div>
+</section>
+<div class="footer">SAT MASTER · Protótipo pessoal · Não afiliado ao College Board.</div>
+</main>
+<script>
+const math=[
+['Algebra','Linear equations in one variable'],['Algebra','Linear equations in two variables'],['Algebra','Linear functions'],['Algebra','Systems of two linear equations'],['Algebra','Linear inequalities'],
+['Advanced Math','Equivalent expressions'],['Advanced Math','Nonlinear equations'],['Advanced Math','Quadratic equations'],['Advanced Math','Exponential functions'],['Advanced Math','Polynomial functions'],['Advanced Math','Rational and radical expressions'],['Advanced Math','Nonlinear systems'],
+['Problem-Solving and Data Analysis','Ratios, rates and proportions'],['Problem-Solving and Data Analysis','Percentages'],['Problem-Solving and Data Analysis','Units and conversions'],['Problem-Solving and Data Analysis','One-variable data'],['Problem-Solving and Data Analysis','Two-variable data and scatterplots'],['Problem-Solving and Data Analysis','Probability and conditional probability'],['Problem-Solving and Data Analysis','Statistical inference and margin of error'],
+['Geometry and Trigonometry','Area and volume'],['Geometry and Trigonometry','Lines, angles and triangles'],['Geometry and Trigonometry','Right triangles and trigonometry'],['Geometry and Trigonometry','Circles'],['Geometry and Trigonometry','Coordinate geometry']];
+const rw=[
+['Information and Ideas','Central ideas and details'],['Information and Ideas','Command of evidence: textual'],['Information and Ideas','Command of evidence: quantitative'],['Information and Ideas','Inferences'],
+['Craft and Structure','Words in context'],['Craft and Structure','Text structure and purpose'],['Craft and Structure','Cross-text connections'],
+['Expression of Ideas','Rhetorical synthesis'],['Expression of Ideas','Transitions'],
+['Standard English Conventions','Subject-verb agreement'],['Standard English Conventions','Pronouns and nouns'],['Standard English Conventions','Verbs and verb forms'],['Standard English Conventions','Modifiers'],['Standard English Conventions','Sentence boundaries'],['Standard English Conventions','Punctuation']];
+const all=[...math,...rw].map((x,i)=>({id:'t'+i,area:i<math.length?'Math':'Reading and Writing',domain:x[0],name:x[1]}));
+const bank=[
+{area:'Math',domain:'Algebra',q:'If 3x + 7 = 22, what is the value of x?',o:['3','5','7','9'],a:1,e:'Subtraia 7 dos dois lados: 3x = 15. Divida por 3: x = 5.'},
+{area:'Math',domain:'Algebra',q:'A line passes through (0, 4) and (2, 10). What is its slope?',o:['2','3','4','6'],a:1,e:'A inclinação é (10 − 4) / (2 − 0) = 6 / 2 = 3.'},
+{area:'Math',domain:'Algebra',q:'If y = 2x − 5, what is y when x = 6?',o:['5','7','9','12'],a:1,e:'Substituindo x = 6: y = 12 − 5 = 7.'},
+{area:'Math',domain:'Advanced Math',q:'What are the solutions to x² − 5x + 6 = 0?',o:['x = 1 and 6','x = 2 and 3','x = −2 and −3','x = 0 and 6'],a:1,e:'Fatorando: (x − 2)(x − 3) = 0. Portanto, x = 2 ou x = 3.'},
+{area:'Math',domain:'Advanced Math',q:'Which expression is equivalent to (x + 3)(x + 4)?',o:['x² + 7x + 12','x² + 12x + 7','x² + 7','x² + 12'],a:0,e:'Pela distributiva: x² + 4x + 3x + 12 = x² + 7x + 12.'},
+{area:'Math',domain:'Problem-Solving and Data Analysis',q:'A jacket costs $80 and is discounted by 25%. What is the sale price?',o:['$20','$55','$60','$65'],a:2,e:'25% de 80 é 20. O preço final é 80 − 20 = 60 dólares.'},
+{area:'Math',domain:'Problem-Solving and Data Analysis',q:'A car travels 150 miles in 3 hours. What is its average speed?',o:['30 mph','45 mph','50 mph','60 mph'],a:2,e:'Velocidade média = distância ÷ tempo = 150 ÷ 3 = 50 mph.'},
+{area:'Math',domain:'Geometry and Trigonometry',q:'A rectangle has a length of 9 and a width of 4. What is its area?',o:['13','26','36','40'],a:2,e:'A área do retângulo é comprimento × largura: 9 × 4 = 36.'},
+{area:'Math',domain:'Geometry and Trigonometry',q:'A right triangle has legs of lengths 6 and 8. What is the hypotenuse?',o:['9','10','12','14'],a:1,e:'Pelo teorema de Pitágoras: c² = 6² + 8² = 100, então c = 10.'},
+{area:'Reading and Writing',domain:'Standard English Conventions',q:'Choose the grammatically correct sentence.',o:['The list of items are on the desk.','The list of items is on the desk.','The list of items were on the desk.','The list of items be on the desk.'],a:1,e:'O núcleo do sujeito é “list”, singular. Por isso, o verbo correto é “is”.'},
+{area:'Reading and Writing',domain:'Standard English Conventions',q:'Choose the correct transition: “The evidence was limited; ____, the researchers avoided a strong conclusion.”',o:['however','for example','similarly','therefore'],a:3,e:'“Therefore” expressa consequência: devido à evidência limitada, os pesquisadores evitaram uma conclusão forte.'},
+{area:'Reading and Writing',domain:'Craft and Structure',q:'In the sentence “The scientist’s results were preliminary,” what does “preliminary” most nearly mean?',o:['Final and conclusive','Early and not yet complete','Unrelated to the study','Widely disputed'],a:1,e:'“Preliminary” significa inicial ou provisório, ainda não definitivo.'},
+{area:'Reading and Writing',domain:'Information and Ideas',q:'A passage states: “After the city added protected bike lanes, bicycle commuting increased by 18%.” Which conclusion is best supported?',o:['Every resident now bikes to work.','Bike commuting rose after the lanes were added.','Car traffic disappeared.','The city reduced all transportation costs.'],a:1,e:'A única conclusão diretamente apoiada pelo trecho é que o deslocamento de bicicleta aumentou após a instalação das ciclovias.'},
+{area:'Reading and Writing',domain:'Expression of Ideas',q:'A student wants to emphasize that a new policy reduced energy use. Which evidence is most relevant?',o:['The policy was announced in June.','The building used 15% less electricity after implementation.','The mayor attended the launch.','The policy document was 12 pages long.'],a:1,e:'A redução de 15% no consumo de eletricidade mede diretamente o efeito da política.'},
+{area:'Reading and Writing',domain:'Information and Ideas',q:'Two studies report different results about sleep and memory. What should a reader examine first?',o:['Whether their methods and samples differ','Which title is longer','Which study was published first only','Whether the authors use similar fonts'],a:0,e:'Métodos e amostras ajudam a explicar por que estudos podem chegar a resultados diferentes.'}
+];
+let state=JSON.parse(localStorage.getItem('satmaster')||'{}');state.status ||= {};state.answered ||= 0;state.correct ||= 0;state.goal ||= '1400';
+let current=[],qi=0,score=0;
+function save(){localStorage.setItem('satmaster',JSON.stringify(state));updateStats()}
+function updateStats(){let m=Object.values(state.status).filter(x=>x==='Dominado').length;let p=Math.round(m/all.length*100);document.getElementById('goalDisplay').textContent=state.goal;document.getElementById('goal').value=state.goal;document.getElementById('answered').textContent=state.answered;document.getElementById('mastered').textContent=m;document.getElementById('percent').textContent=p+'%';document.getElementById('progressBar').style.width=p+'%';document.getElementById('progressText').textContent=m+' de '+all.length+' tópicos dominados.';document.getElementById('pAnswered').textContent=state.answered;document.getElementById('pCorrect').textContent=state.correct;document.getElementById('accuracy').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'—';document.getElementById('pMastered').textContent=m}
+function go(page,a){document.querySelectorAll('section').forEach(s=>s.classList.add('hide'));document.getElementById(page).classList.remove('hide');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));if(a)setArea(a);if(page==='matrix')renderTopics();if(page==='practice')fillPracticeDomains();window.scrollTo(0,0)}
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
+window.go=go;
+document.getElementById('goal').onchange=e=>{state.goal=e.target.value;save()};
+let area='Math';
+function setArea(a){area=a;document.getElementById('mathTab').classList.toggle('active',a==='Math');document.getElementById('rwTab').classList.toggle('active',a!=='Math');let ds=[...new Set(all.filter(t=>t.area===a).map(t=>t.domain))];let f=document.getElementById('domainFilter');f.innerHTML='<option>Todos</option>'+ds.map(d=>`<option>${d}</option>`).join('');renderTopics()}
+function renderTopics(){let d=document.getElementById('domainFilter').value,s=document.getElementById('statusFilter').value;let list=all.filter(t=>t.area===area&&(d==='Todos'||t.domain===d)&&(s==='Todos'||(state.status[t.id]||'Não dominado')===s));document.getElementById('topics').innerHTML=list.map(t=>{let st=state.status[t.id]||'Não dominado';return `<div class="topic"><div><b>${t.name}</b><div class="muted" style="font-size:12px">${t.domain}</div></div><button class="status-${st.replaceAll(' ','-')}" onclick="cycle('${t.id}')">${st} ↻</button></div>`}).join('')||'<p class="muted">Nenhum tópico encontrado.</p>'}
+function cycle(id){let s=state.status[id]||'Não dominado';state.status[id]=s==='Não dominado'?'Em aprendizado':s==='Em aprendizado'?'Dominado':'Não dominado';save();renderTopics()}
+document.getElementById('domainFilter').onchange=renderTopics;document.getElementById('statusFilter').onchange=renderTopics;
+function fillPracticeDomains(){let a=document.getElementById('practiceArea').value;let ds=[...new Set(all.filter(t=>t.area===a).map(t=>t.domain))];document.getElementById('practiceDomain').innerHTML='<option>Todos</option>'+ds.map(d=>`<option>${d}</option>`).join('')}
+document.getElementById('practiceArea').onchange=fillPracticeDomains;
+function startPractice(a,n){if(a){document.getElementById('practiceArea').value=a==='Ambas'?'Math':a;fillPracticeDomains()}let chosen=document.getElementById('practiceArea').value,dom=document.getElementById('practiceDomain').value,count=n||+document.getElementById('count').value;let pool=bank.filter(q=>(a==='Ambas'||q.area===chosen)&&(a==='Ambas'||dom==='Todos'||q.domain===dom));if(!pool.length)pool=bank.filter(q=>q.area===chosen);current=Array.from({length:count},(_,i)=>pool[i%pool.length]);qi=0;score=0;go('practice');document.getElementById('quiz').classList.remove('hide');showQuestion()}
+window.startPractice=startPractice;
+function showQuestion(){let q=current[qi];if(!q){document.getElementById('quiz').innerHTML=`<h3>Treino concluído!</h3><div class="big">${score}/${current.length}</div><p>Acertos: ${Math.round(score/current.length*100)}%</p><button onclick="startPractice()">Novo treino</button>`;return}document.getElementById('quiz').innerHTML=`<div class="statline"><b>Questão ${qi+1} de ${current.length}</b><span class="pill">${q.area} · ${q.domain}</span></div><div class="question">${q.q}</div>${q.o.map((o,i)=>`<button class="option" onclick="answer(${i})">${'ABCD'[i]}. ${o}</button>`).join('')}<div id="feedback"></div>`}
+function answer(i){let q=current[qi],buttons=document.querySelectorAll('#quiz .option');buttons.forEach((b,j)=>{b.disabled=true;if(j===q.a)b.classList.add('correct');if(j===i&&i!==q.a)b.classList.add('wrong')});let ok=i===q.a;state.answered++;if(ok){state.correct++;score++}save();document.getElementById('feedback').innerHTML=`<div class="feedback"><b>${ok?'Resposta correta!':'Resposta incorreta.'}</b><p>${q.e}</p><button onclick="nextQuestion()">${qi===current.length-1?'Ver resultado':'Próxima questão'}</button></div>`}
+function nextQuestion(){qi++;showQuestion()}
+window.answer=answer;window.nextQuestion=nextQuestion;
+function resetStats(){if(confirm('Tem certeza de que deseja zerar as estatísticas de questões? A matriz de domínio será mantida.')){state.answered=0;state.correct=0;save()}}
+window.resetStats=resetStats;
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+fillPracticeDomains();setArea('Math');updateStats();
+</script>
+</body></html>
